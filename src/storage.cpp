@@ -23,7 +23,7 @@ std::string store::readfromDB(std::string dbFilePath, long loc)
 long store::writeToDB(std::string dbFilePath, std::string data)
 {
     std::ofstream fio;
-    fio open(dbFilePath,std::ios::ate|std::ios::app);
+    fio.open(dbFilePath,std::ios::ate|std::ios::app);
     short size = data.size() + 1;
     long curLoc = fio.tellp();
     fio << size << " " << data << '~';
@@ -48,14 +48,14 @@ void store::loadIndex(std::string indexFile, std::unordered_map<std::string, lon
 void store::writeToIndex(std::string indexFile, std::string id,long pos)
 {
     std::ofstream fio;
-    fio.open(indexFile, std::ios::ate | std::ios:app);
+    fio.open(indexFile, std::ios::ate | std::ios::app);
     fio << id << " " << pos << std::endl;
     fio.close();
 };
 
 void store::deleteFolder(std::string folderPath)
 {
-    fs::remove(foldePath);
+    fs::remove(folderPath);
 };
 
 void store::makeDir(std::string folderName)

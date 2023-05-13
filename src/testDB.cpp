@@ -3,7 +3,7 @@
 #include <iostream>
 #include <map>
 #include <cstdlib>
-#include <direct.h>
+//#include <direct.h>
 #include <string.h>
 #include <filesystem>
 #include <fstream>
@@ -59,12 +59,12 @@ std::string testDB::getRecord(std::string id)
     {
         throw std::runtime_error("no value found");
     }
-    return store::readfromDB(this->dbfilePath, index[id]);
+    return store::readfromDB(this->dbFilePath, index[id]);
 };
 
 void testDB::putRecord(std::string id, std::string record)
 {
-    long pos = store::writeToDB(this->dbfilePath, record);
+    long pos = store::writeToDB(this->dbFilePath, record);
     index[id] = pos;
     store::writeToIndex(this->indexFilePath, id, pos);
 };
@@ -76,7 +76,7 @@ std::string testDB::getIndexFilePath()
 
 std::string testDB::getDbFilePath() 
 {
-    return this->dbfilePath;
+    return this->dbFilePath;
 };
 
 testDB::testDB(std::string dbName, std::string dbFolderPath, std::string dbFilePath, std::string indexFilePath)
